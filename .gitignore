@@ -1,4 +1,15 @@
-node_modules
+# Course is already complete, so the files won't be updated.
+# No point in including in repository.
+Intro to Programming/
 
-# Created by webpack when built, so should not be tracked.
+# These files will be made when the package.json is installed,
+# so they don't need to be hosted.
+node_modules/
+
+#This script will be made when the webpack build is run,
+# so it doesn't need to be hosted.
 bundle.js
+
+#Other courses that I'm not going to be continuing for now
+Advanced CSS/
+Java Revature Course/
