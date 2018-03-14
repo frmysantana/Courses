@@ -95,7 +95,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
 // Filters reducer
 const filtersReducerDefaultState = {
   text: '',
-  sortBy: 'date',
+  sortBy: 'Date',
   startDate: undefined,
   endDate: undefined
 };
@@ -132,6 +132,27 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
   }
 };
 
+// timestamp (milliseconds after starting point)
+// starting point for all timestamps: January 1, 1970 (unix epoch)
+// 33400 (i.e. 33.4 seconds after Unix epoch), 10, -203 (i.e. 203 ms BEFORE unix epoch)
+
+// Get visible expenses
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+  return expenses.filter((expense) => {
+    const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
+    const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+    const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+
+    return startDateMatch && endDateMatch && textMatch;
+  }).sort((a, b) => {
+    if (sortBy === 'Date') {
+      return a.createdAt < b.createdAt ? 1 : -1; 
+    } else if (sortBy === 'Amount') {
+      return b.amount - a.amount;
+    }
+  });
+};
+
 // Store creation
 const store = createStore(
   combineReducers({
@@ -141,13 +162,15 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  console.log(store.getState());
+  const state = store.getState();
+  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+  console.log(visibleExpenses);
 });
 
 // Dispatching an action returns that action object, so it can be stored in a 
 // variable for later use
-// const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100 })); 
-// const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300 }));
+const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: -21000 })); 
+const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300, createdAt: -100 }));
 
 // // Using the previously caught action object to get the id of the expense to 
 // // remove it from the state contatiner
@@ -155,15 +178,15 @@ store.subscribe(() => {
 
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
 
-// store.dispatch(setTextFilter('rent'));
+// store.dispatch(setTextFilter('ee'));
 // store.dispatch(setTextFilter(''));
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(1250));
+// store.dispatch(setStartDate(-20000));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(20000));
 
 // const demoState = {
 //     expenses: [{
@@ -183,13 +206,13 @@ store.dispatch(setEndDate(1250));
 
 
 // Object Spread Operator example
-const user = {
-  name: 'Jen',
-  age: 24
-};
+// const user = {
+//   name: 'Jen',
+//   age: 24
+// };
 
-console.log({
-  age: 27,
-  ...user,
-  location: 'Philadelphia',
-});
+// console.log({
+//   age: 27,
+//   ...user,
+//   location: 'Philadelphia',
+// });
