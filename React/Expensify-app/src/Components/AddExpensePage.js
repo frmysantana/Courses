@@ -6,7 +6,7 @@ import { addExpense } from '../Actions/expenses';
 export class AddExpensePage extends React.Component {
   onSubmit = (expense) => {
     //Line below abstracts: props.dispatch(addExpense(expense));
-    this.props.onSubmit(expense);
+    this.props.addExpense(expense);
     this.props.history.push('/');
   };
 
@@ -25,8 +25,8 @@ export class AddExpensePage extends React.Component {
 // Used to abstract the above comment's dispatch call
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (expense) => dispatch(addExpense(expense))
+    addExpense: (expense) => dispatch(addExpense(expense))
   };
 };
 
-export default connect(undefined, )(AddExpensePage);
+export default connect(undefined, mapDispatchToProps)(AddExpensePage);
