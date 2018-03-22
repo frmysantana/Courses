@@ -1,0 +1,6 @@
+# These files will be made when the package.json is installed and  # webpack is run, so they don't need to be hosted.
+node_modules/
+bundle.js
+bundle.js.map
+styles.css
+styles.css.map

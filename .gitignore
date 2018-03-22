@@ -2,13 +2,12 @@
 # No point in including in repository.
 Intro to Programming/
 
-# These files will be made when the package.json is installed,
-# so they don't need to be hosted.
+# These files will be made when the package.json is installed and  # webpack is run, so they don't need to be hosted.
 node_modules/
-
-#This script will be made when the webpack build is run,
-# so it doesn't need to be hosted.
 bundle.js
+bundle.js.map
+styles.css
+styles.css.map
 
 #Other courses that I'm not going to be continuing for now
 Advanced CSS/
