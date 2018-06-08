@@ -1,0 +1,7 @@
+# These files will be made when the package.json is installed and  
+# webpack is run, so they don't need to be hosted.
+node_modules/
+public/dist/
+.env.test
+.env.development
+.vscode/
