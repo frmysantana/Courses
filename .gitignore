@@ -1,6 +1,14 @@
 # Course is already complete, so the files won't be updated.
 # No point in including in repository.
-Intro to Programming/
+intro-to-programming/
+advanced-css/natours/final-after-S06
+advanced-css/natours/starter
+advanced-css/Nexter
+advanced-css/Trillo
+advanced-css/npm-fixes.md
+advanced-css/README.md
+advanced-css/slides-students-C04.pdf
+advanced-css/vscode-setup.md
 
 # These files will be made when the package.json is installed and  # webpack is run, so they don't need to be hosted.
 node_modules/
@@ -10,4 +18,9 @@ styles.css
 styles.css.map
 
 #Other courses that I'm not going to be continuing for now
-Java Revature Course/
+java-revature-course/
+shopify/__MACOSX
+shopify/fashion-html-template
+shopify/fashion-theme
+shopify/fashion-theme-s2l6/config.yml
+shopify/products-export.csv
