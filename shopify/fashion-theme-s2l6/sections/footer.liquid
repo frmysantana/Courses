@@ -38,18 +38,11 @@
         
         </ul>
         <ul class="footer-menu">
+          {% for block in section.blocks %}
           <li>
-            <a href="">Contact</a>
+            <a href="{{ block.settings.footer_link}}">{{ block.settings.footer_text }}</a>
           </li>
-          <li>
-            <a href="">SHIPPING</a>
-          </li>
-          <li>
-            <a href="">TERMS OF SERVICE</a>
-          </li>
-          <li>
-            <a href="">PRIVACY POLICY</a>
-          </li>
+          {% endfor %}
         </ul>
         <p class="copyright-text">Copyright &#9400; Fashion</p>
       </div>
