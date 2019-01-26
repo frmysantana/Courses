@@ -194,8 +194,6 @@ $('.product-category select').on('change', function() {
   var selectedValues = getVariantFromOptions();
   var variants = window.product.variants;
   
-  debugger;
-  
   // Search for product variants based on what was selected in the dropdowns
   var found = _.find(variants, function(variant) {
     return selectedValues.every(function(values) {

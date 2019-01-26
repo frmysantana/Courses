@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before { 
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+} 
+
+html {
+  /*
+   defines what 1rem is, so leaving in base
+   default browser setting for font-size is 16px, so 16px * 62.5% = 10px
+   therefore, 1rem is now 10 px
+  */
+  font-size: 62.5%;
+  
+  @include respond(tab-land) {
+    font-size: 56.25%; // want 1rem => 9px, 9/16 = 56.25%
+  }
+  
+  @include respond(tab-port) {
+    font-size: 50%; // want 1rem => 8px, 8/16 = 50%; will also use for phone breakpoint
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // want 1rem => 12px, 12/16 = 75%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+// change colors of text that user has clicked and dragged over
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

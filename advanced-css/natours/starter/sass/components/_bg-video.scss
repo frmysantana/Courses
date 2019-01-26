@@ -1,0 +1,19 @@
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .15;
+  overflow: hidden; //get rid of any slight overflow
+
+  &__content {
+    // get video element to same size as wrapping div
+    height: 100%;
+    width: 100%;
+    // make video cover entire wrapping div, maintaining its aspect ratio
+    // but not overflowing beyond parent (like background-size: cover)
+    object-fit: cover;
+  }
+}

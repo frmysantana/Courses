@@ -1,0 +1,89 @@
+/* base font properties; more efficient to set in the body
+selector rather than universal selector - takes advantage of inheritance */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7; /* sets property to be 1.7 times the default value*/
+  color: $color-grey-dark;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+  
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
+
+    animation: moveInLeft 1s ease-out;
+  
+    /* other animation properties
+    animation-iteration-count: 3;  
+    animation-delay: 3s;
+    */
+  }
+  
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+
+    @include respond(phone) {
+      letter-spacing: .5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px; //if lengths are small enough, doesn't matter to use rem or px (especially due to rounding error)
+  transition: all .2s;
+
+  // Gradient-colored text effect
+  display: inline-block; //stop background at end of text (element only as wide as text)
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  -webkit-background-clip: text; //NEW PROP: background only exists behind the text
+  color: transparent;
+  // end Gradient-colored text effect
+
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover { // transition effect
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+  
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
